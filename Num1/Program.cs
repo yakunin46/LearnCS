@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Drawing;
+using Console = Colorful.Console;
+
 namespace Num1
 {
     class Program
@@ -35,10 +38,48 @@ namespace Num1
             int age = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Возраст: {age}");
         }
+
+        static void Method2()
+        {
+            int[] mas = [1, 2, 3, 4];
+            for (int i = 0; i < mas.Length; i++)
+            {
+                Console.Write(mas[i] + " ");
+            }
+            Console.WriteLine("\nconsole in pink", Color.Green);
+            Console.WriteLine("console in default");
+            Console.WriteAscii("NARUTO", Color.Orange);
+            Console.WriteAscii("SASUKE", Color.Orchid);
+
+            int r = 225;
+            int g = 255;
+            int b = 250;
+
+            List<string> storyFragment = new List<string>()
+            {
+                "Том не пошел в школу и отлично провел время.",
+                "Он еле успел вернуться домой, чтобы до ужина помочь негритенку Джиму",
+                "напилить на завтра дров и наколоть щепок для растопки.",
+                "Во всяком случае, он успел рассказать Джиму о своих похождениях,",
+                "пока тот сделал три четверти работы.",
+                "Младший (или, скорее, сводный) брат Тома, Сид, уже сделал все, что ему полагалось",
+                "(он подбирал и носил щепки): это был послушный мальчик,",
+                "не склонный к шалостям и проказам."
+            };
+
+            for (int i = 0; i < 8; i++)
+            {
+                Console.WriteLine(storyFragment[i], Color.FromArgb(r, g, b));
+
+                r -= 18;
+                b -= 9;
+            }
+        }
+
         static void Main()
         {
             //Method1();
-
+            //Method2();
         }
     }
 }
