@@ -1,4 +1,13 @@
 <Solution>
-  <Project Path="../StaticMethodsSeparation/ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="bank/bank.csproj" Id="844ed8d1-a908-4984-b4ae-84a00cb5fe54" />
+  <Project Path="Lab2/Lab2.csproj" Id="d3d5af5e-dae0-41ae-80dd-cbba65b34899" />
+  <Project Path="Lab3/Lab3.csproj" Id="5a0e9056-89a6-4dfb-8b38-18c03a78bf90" />
+  <Project Path="Lab4/Lab4.csproj" Id="490444d7-be10-40dc-a0b6-e6e3dd24d4f2" />
+  <Project Path="Lab5/Lab5.csproj" Id="c8fe6745-5104-46be-8993-68a942ff763c" />
+  <Project Path="Lab6/Lab6.csproj" Id="00acece0-95a4-4cab-97ef-ac73318a9dae" />
+  <Project Path="Lab_china/Lab_china/Lab_china.csproj" Id="eb97744b-9bc4-4794-9b79-61bf337a9aa2" />
+  <Project Path="lab_stack/lab_stack.csproj" Id="87f9ff91-5758-4421-96a0-889b76798e06" />
   <Project Path="Num1/Num1.csproj" />
+  <Project Path="RPG/RPG.csproj" />
+  <Project Path="static_metods_separation/StaticMethodsSeparation.csproj" Id="81e63933-2bb5-4c9d-b43e-b654c4fea6ff" />
 </Solution>
