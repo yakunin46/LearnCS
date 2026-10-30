@@ -44,38 +44,42 @@ namespace RPG
         }
 
         /// <summary>
+        /// Проверяет нажатую клавишу
+        /// </summary>
+        /// <param name="inputKey">Информация о нажатой клавише</param>
+        public void CheckKey(ConsoleKeyInfo inputKey)
+        {
+            if (inputKey.KeyChar == '1' && player.x > 1)
+                SetPlayer(player.x - 1, player.y);
+
+            if (inputKey.KeyChar == '2' && player.x < world.width - 2)
+                SetPlayer(player.x + 1, player.y);
+
+            if (inputKey.KeyChar == '3' && player.y > 1)
+                SetPlayer(player.x, player.y - 1);
+
+            if (inputKey.KeyChar == '4' && player.y < world.height - 2)
+                SetPlayer(player.x, player.y + 1);
+        }
+
+        /// <summary>
         /// Запускает игру
         /// </summary>
         public void Run()
         {
             ConsoleKeyInfo inputKey;
-
             Console.Clear();
-
             Console.CursorVisible = false;
 
             while (true) 
             {
-
                 Console.SetCursorPosition(0, 0);
-
                 world.Show();
 
                 Console.Write("1.Влево\n2.Вправо\n3.Вверх\n4.Вниз\n>");
 
                 inputKey = Console.ReadKey();
-
-                if (inputKey.KeyChar == '1' && player.x > 1)
-                    SetPlayer(player.x - 1, player.y);
-
-                if (inputKey.KeyChar == '2' && player.x < world.width - 2)
-                    SetPlayer(player.x + 1, player.y);
-
-                if (inputKey.KeyChar == '3' && player.y > 1)
-                    SetPlayer(player.x, player.y - 1);
-
-                if (inputKey.KeyChar == '4' && player.y < world.height - 2)
-                    SetPlayer(player.x, player.y + 1);
+                CheckKey(inputKey);
             }
         }
     }
