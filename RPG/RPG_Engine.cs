@@ -44,15 +44,20 @@ namespace RPG
         }
 
         /// <summary>
-        /// Отрисовывает игровой мир
+        /// Запускает игру
         /// </summary>
         public void Run()
         {
             ConsoleKeyInfo inputKey;
 
+            Console.Clear();
+
+            Console.CursorVisible = false;
+
             while (true) 
             {
-                Console.Clear();
+
+                Console.SetCursorPosition(0, 0);
 
                 world.Show();
 

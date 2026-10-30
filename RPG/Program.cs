@@ -44,7 +44,7 @@ namespace RPG
 
             Atlas.Set(" #$");
 
-            RPG_Engine engine = new RPG_Engine(11, 11);
+            RPG_Engine engine = new RPG_Engine(21, 21);
 
             engine.Run();
         }

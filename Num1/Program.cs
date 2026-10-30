@@ -80,6 +80,18 @@ namespace Num1
         {
             //Method1();
             //Method2();
+            int[][] numbers = new int[3][];
+            numbers[0] = new int[] { 1, 2 };
+            numbers[1] = new int[] { 1, 2, 3 };
+            numbers[2] = new int[] { 1, 2, 3, 4, 5 };
+            foreach (int[] row in numbers)
+            {
+                foreach (int number in row)
+                {
+                    Console.Write($"{number} \t");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
