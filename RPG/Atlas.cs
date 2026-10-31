@@ -23,8 +23,14 @@ namespace RPG
         /// <summary>
         /// Игрок
         /// </summary>
-        PLAYER
+        PLAYER,
+
+        /// <summary>
+        /// Предмет
+        /// </summary>
+        ITEM
     }
+
     /// <summary>
     /// Набор символов из которых состоит мир
     /// </summary>
@@ -43,6 +49,7 @@ namespace RPG
         {
             str_chars = str;
         }
+
         /// <summary>
         /// Получить символ по коду из Cell
         /// </summary>

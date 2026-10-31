@@ -6,27 +6,27 @@ using System.Xml.Linq;
 namespace RPG
 {
     /// <summary>
-    /// Игровой мир
+    /// Игровая карта
     /// </summary>
     internal class Map
     {
         /// <summary>
-        /// Ширина мира
+        /// Ширина карты
         /// </summary>
         public int width;
 
         /// <summary>
-        /// Высота мира
+        /// Высота карты
         /// </summary>
         public int height;
 
         /// <summary>
-        /// Создает сетку мира
+        /// Создает сетку карты
         /// </summary>
         public Cell[,] grid;
 
         /// <summary>
-        /// Создает мир
+        /// Создает карту
         /// </summary>
         /// <param name="height">Высота мира</param>
         /// <param name="width">Ширина мира</param>
@@ -39,7 +39,7 @@ namespace RPG
         }
 
         /// <summary>
-        /// Заполняет границы мира как стенки
+        /// Заполняет границы карты как стенки
         /// </summary>        
         public void Create()
         {

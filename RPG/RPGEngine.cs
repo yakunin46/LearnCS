@@ -7,10 +7,11 @@ namespace RPG
     /// <summary>
     /// Игровой движок
     /// </summary>
-    internal class RPG_Engine
+    internal class RPGEngine
     {
+        public List<Item> listOfItems;
         /// <summary>
-        /// Экземпляр мира
+        /// Экземпляр карты
         /// </summary>
         public Map map;
 
@@ -22,29 +23,42 @@ namespace RPG
         /// <summary>
         /// Создает игровой движок
         /// </summary>
-        /// <param name="width">Ширина мира</param>
-        /// <param name="height">Высота мира</param>
-        public RPG_Engine()
+        /// <param name="width">Ширина карты</param>
+        /// <param name="height">Высота карты</param>
+        public RPGEngine()
         {
+            map = new Map(2, 2);
             player = new Player(1, 1);
-        }
-
-        public void SetMap(Map map)
-        {
-            this.map = map;
+            listOfItems = new List<Item>();
         }
 
         /// <summary>
-        /// Меняет позицию игрока в мире
+        /// Меняет карту
+        /// </summary>
+        /// <param name="map"></param>
+        public void SetMap(Map map)
+        {
+            this.map = map;
+            listOfItems.Clear();
+        }
+
+        /// <summary>
+        /// Меняет позицию игрока на карте
         /// </summary>
         /// <param name="x">Новое положение игрока по оси X</param>
         /// <param name="y">Новое положение игрока по оси Y</param>
         public void SetPlayer(int x, int y)
         {
-            player.x = x; 
+            player.x = x;
             player.y = y;
         }
 
+        public void SetItem(Item item, int x, int y)
+        {
+            item.x = x;
+            item.y = y;
+            listOfItems.Add(item);
+        }
         /// <summary>
         /// Проверяет нажатую клавишу
         /// </summary>
@@ -64,21 +78,30 @@ namespace RPG
                 SetPlayer(player.x, player.y + 1);
         }
 
-        public void Show()
+        /// <summary>
+        /// Отображает карту, игрока и предметы в консоли
+        /// </summary>
+        public void ShowMap()
         {
             for (int i = 0; i < map.height; i++)
             {
                 for (int j = 0; j < map.width; j++)
                 {
-                    if (i == player.y && j == player.x)
-                        Console.Write(Atlas.Get(Cell.PLAYER) + " ");
-                    else if (map.grid[i, j] == Cell.WALL)
+                    if (map.grid[i, j] == Cell.WALL)
                         Console.Write(Atlas.Get(Cell.WALL) + " ");
-                    else if (map.grid[i, j] == Cell.EMPTY)
+                    else
                         Console.Write(Atlas.Get(Cell.EMPTY) + " ");
-
                 }
                 Console.WriteLine();
+            }
+
+            Console.SetCursorPosition(2 * player.x, player.y);
+            Console.Write(Atlas.Get(Cell.PLAYER));
+
+            foreach (Item item in listOfItems)
+            {
+                Console.SetCursorPosition(2 * item.x, item.y);
+                Console.Write(Atlas.Get(Cell.ITEM));
             }
         }
 
@@ -94,7 +117,7 @@ namespace RPG
             while (true) 
             {
                 Console.SetCursorPosition(0, 0);
-                Show();
+                ShowMap();
 
                 Console.SetCursorPosition(0, map.height);
                 Console.Write("1.Влево\n2.Вправо\n3.Вверх\n4.Вниз\n>");

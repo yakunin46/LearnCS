@@ -16,12 +16,23 @@ namespace RPG
         public string name;
 
         /// <summary>
+        /// Положение предмета по оси абсцис
+        /// </summary>
+        public int x;
+
+        /// <summary>
+        /// Положение предмета по оси ординат
+        /// </summary>
+        public int y;
+
+        /// <summary>
         /// Создает предмет
         /// </summary>
         /// <param name="name">Имя предмета</param>
         public Item(string name)
         {
             this.name = name;
+
         }
 
         /// <summary>
