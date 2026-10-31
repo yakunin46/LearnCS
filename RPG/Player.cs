@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace RPG
@@ -28,6 +29,13 @@ namespace RPG
         {
             this.x = x;
             this.y = y;
+        }
+
+        public void Show()
+        {
+            Console.SetCursorPosition(2 * x, y);
+            char c3 = Atlas.Get(Cell.PLAYER);
+            Console.Write(c3);
         }
     }
 }

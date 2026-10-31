@@ -8,7 +8,7 @@ namespace RPG
     /// <summary>
     /// Игровой мир
     /// </summary>
-    internal class World
+    internal class Map
     {
         /// <summary>
         /// Ширина мира
@@ -30,7 +30,7 @@ namespace RPG
         /// </summary>
         /// <param name="height">Высота мира</param>
         /// <param name="width">Ширина мира</param>
-        public World(int width, int height)
+        public Map(int width, int height)
         {
             this.width = width;
             this.height = height;
@@ -49,29 +49,6 @@ namespace RPG
                         grid[i, j] = Cell.WALL;
                     else
                         grid[i, j] = Cell.EMPTY;
-        }
-
-        /// <summary>
-        /// Выводит мир в консоль
-        /// </summary>
-        public void Show()
-        {
-            char c1 = Atlas.Get(Cell.WALL);
-            char c2 = Atlas.Get(Cell.EMPTY);
-            char c3 = Atlas.Get(Cell.PLAYER);
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    if (grid[i, j] == Cell.WALL)
-                        Console.Write(c1 + " ");
-                    if (grid[i, j] == Cell.EMPTY)
-                        Console.Write(c2 + " ");
-                    if (grid[i, j] == Cell.PLAYER)
-                        Console.Write(c3 + " ");
-                }
-                Console.WriteLine();
-            }
         }
     }
 }

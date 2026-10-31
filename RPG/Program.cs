@@ -44,7 +44,12 @@ namespace RPG
 
             Atlas.Set(" #$");
 
-            RPG_Engine engine = new RPG_Engine(21, 21);
+            RPG_Engine engine = new RPG_Engine();
+            engine.SetMap(new Map(30, 20));
+            engine.SetPlayer(10, 2);
+
+            //engine.SetMap(new Map(10, 20));
+            //engine.SetPlayer(5, 5);
 
             engine.Run();
         }
