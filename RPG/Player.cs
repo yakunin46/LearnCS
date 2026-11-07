@@ -21,6 +21,11 @@ namespace RPG
         public int y;
 
         /// <summary>
+        /// Инвентарь игрока
+        /// </summary>
+        List<Item> inventory;
+
+        /// <summary>
         /// Создает игрока
         /// </summary>
         /// <param name="x">Координата x</param>
@@ -29,6 +34,28 @@ namespace RPG
         {
             this.x = x;
             this.y = y;
+            inventory = new List<Item>();
+        }
+
+        /// <summary>
+        /// Добавляет предмет в инвентарь игрока
+        /// </summary>
+        /// <param name="item"></param>
+        public void AddItem(Item item)
+        {
+            inventory.Add(item);
+        }
+
+        /// <summary>
+        /// Выводит инвентарь игрока в консоль
+        /// </summary>
+        public void PrintInventory()
+        {
+            Console.WriteLine("Инвентарь игрока: ");
+            foreach (Item item in inventory)
+            {
+                Console.WriteLine(item.GetName());
+            }
         }
     }
 }

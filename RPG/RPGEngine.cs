@@ -9,22 +9,20 @@ namespace RPG
     /// </summary>
     internal class RPGEngine
     {
-        public List<Item> listOfItems;
+        List<Item> listOfItems;
         /// <summary>
         /// Экземпляр карты
         /// </summary>
-        public Map map;
+        Map map;
 
         /// <summary>
         /// Экземпляр игрока
         /// </summary>
-        public Player player;
+        Player player;
 
         /// <summary>
         /// Создает игровой движок
         /// </summary>
-        /// <param name="width">Ширина карты</param>
-        /// <param name="height">Высота карты</param>
         public RPGEngine()
         {
             map = new Map(2, 2);
@@ -53,7 +51,13 @@ namespace RPG
             player.y = y;
         }
 
-        public void SetItem(Item item, int x, int y)
+        /// <summary>
+        /// Устанавливает положение предмета на карте
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void AddItem(Item item, int x, int y)
         {
             item.x = x;
             item.y = y;
@@ -63,7 +67,7 @@ namespace RPG
         /// Проверяет нажатую клавишу
         /// </summary>
         /// <param name="inputKey">Информация о нажатой клавише</param>
-        public void CheckKey(ConsoleKeyInfo inputKey)
+        void CheckKey(ConsoleKeyInfo inputKey)
         {
             if (inputKey.KeyChar == '1' && player.x > 1)
                 SetPlayer(player.x - 1, player.y);
@@ -81,28 +85,25 @@ namespace RPG
         /// <summary>
         /// Отображает карту, игрока и предметы в консоли
         /// </summary>
-        public void ShowMap()
+        void ShowMap()
         {
             for (int i = 0; i < map.height; i++)
             {
                 for (int j = 0; j < map.width; j++)
-                {
-                    if (map.grid[i, j] == Cell.WALL)
-                        Console.Write(Atlas.Get(Cell.WALL) + " ");
-                    else
-                        Console.Write(Atlas.Get(Cell.EMPTY) + " ");
-                }
+                        Console.Write(Atlas.Get(map.grid[i, j]) + " ");
                 Console.WriteLine();
             }
-
-            Console.SetCursorPosition(2 * player.x, player.y);
-            Console.Write(Atlas.Get(Cell.PLAYER));
 
             foreach (Item item in listOfItems)
             {
                 Console.SetCursorPosition(2 * item.x, item.y);
                 Console.Write(Atlas.Get(Cell.ITEM));
+                if (player.x == item.x && player.y == item.y)
+                    player.AddItem(item);
             }
+
+            Console.SetCursorPosition(2 * player.x, player.y);
+            Console.Write(Atlas.Get(Cell.PLAYER));
         }
 
         /// <summary>
@@ -120,8 +121,10 @@ namespace RPG
                 ShowMap();
 
                 Console.SetCursorPosition(0, map.height);
-                Console.Write("1.Влево\n2.Вправо\n3.Вверх\n4.Вниз\n>");
+                Console.Write("1.Влево\n2.Вправо\n3.Вверх\n4.Вниз\n>\n");
+                player.PrintInventory();
 
+                Console.SetCursorPosition(1, map.height + 4);
                 inputKey = Console.ReadKey();
                 CheckKey(inputKey);
             }

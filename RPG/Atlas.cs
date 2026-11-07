@@ -8,7 +8,7 @@ namespace RPG
     /// <summary>
     /// Тип ячейки мира
     /// </summary>
-    public enum Cell
+    enum Cell
     {
         /// <summary>
         /// Пустая ячейка
@@ -39,7 +39,7 @@ namespace RPG
         /// <summary>
         /// Содержит строку символов в том же порядке что и Cell
         /// </summary>
-        static string str_chars = "";
+        static string strOfChars = "";
 
         /// <summary>
         /// Задает Атлас как последовательность символов
@@ -47,7 +47,7 @@ namespace RPG
         /// <param name="str">Строка из символов в том же порядке что и Cell</param>
         public static void Set(string str)
         {
-            str_chars = str;
+            strOfChars = str;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace RPG
         /// <returns></returns>
         public static char Get(Cell cell)
         {
-            return str_chars[(int) cell];
+            return strOfChars[(int) cell];
         }
     }
 }

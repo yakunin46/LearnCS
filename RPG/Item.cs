@@ -13,7 +13,7 @@ namespace RPG
         /// <summary>
         /// Название предмета
         /// </summary>
-        public string name;
+        string name;
 
         /// <summary>
         /// Положение предмета по оси абсцис

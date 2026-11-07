@@ -41,7 +41,7 @@ namespace RPG
         /// <summary>
         /// Заполняет границы карты как стенки
         /// </summary>        
-        public void Create()
+        void Create()
         {
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
