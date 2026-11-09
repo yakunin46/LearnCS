@@ -26,6 +26,11 @@ namespace RPG
         PLAYER,
 
         /// <summary>
+        /// Враг
+        /// </summary>
+        ENEMY,
+
+        /// <summary>
         /// Предмет
         /// </summary>
         ITEM

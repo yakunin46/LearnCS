@@ -9,7 +9,16 @@ namespace RPG
     /// </summary>
     internal class RPGEngine
     {
+        /// <summary>
+        /// Список предметов мира
+        /// </summary>
         List<Item> listOfItems;
+
+        /// <summary>
+        /// Список врагов
+        /// </summary>
+        List<Enemy> listOfEnemies;
+
         /// <summary>
         /// Экземпляр карты
         /// </summary>
@@ -28,6 +37,7 @@ namespace RPG
             map = new Map(2, 2);
             player = new Player(1, 1);
             listOfItems = new List<Item>();
+            listOfEnemies = new List<Enemy>();
         }
 
         /// <summary>
@@ -63,6 +73,12 @@ namespace RPG
             item.y = y;
             listOfItems.Add(item);
         }
+
+        public void AddEnemy(Enemy enemy)
+        {
+            listOfEnemies.Add(enemy);
+        }
+
         /// <summary>
         /// Проверяет нажатую клавишу
         /// </summary>
@@ -83,7 +99,7 @@ namespace RPG
         }
 
         /// <summary>
-        /// Отображает карту, игрока и предметы в консоли
+        /// Отображает карту, игрока, врагов и предметы в консоли
         /// </summary>
         void ShowMap()
         {
@@ -94,16 +110,46 @@ namespace RPG
                 Console.WriteLine();
             }
 
+            foreach (Enemy enemy in listOfEnemies)
+            {
+                Console.SetCursorPosition(2 * enemy.x, enemy.y);
+                Console.Write(Atlas.Get(Cell.ENEMY));
+            }
+
             foreach (Item item in listOfItems)
             {
                 Console.SetCursorPosition(2 * item.x, item.y);
                 Console.Write(Atlas.Get(Cell.ITEM));
-                if (player.x == item.x && player.y == item.y)
-                    player.AddItem(item);
             }
 
             Console.SetCursorPosition(2 * player.x, player.y);
             Console.Write(Atlas.Get(Cell.PLAYER));
+        }
+
+        /// <summary>
+        /// Обрабатывает столкновение игрока с другими объектами или врагами
+        /// </summary>
+        private void ProcessCollisions()
+        {
+            List<Item> newList = new List<Item>();
+            foreach (Item item in listOfItems)
+            {
+                if (player.x == item.x && player.y == item.y)
+                    player.AddItem(item);
+                else
+                    newList.Add(item);
+            }
+            List<Enemy> newList1 = new List<Enemy>();
+            foreach (Enemy enemy in listOfEnemies)
+            {
+                if (player.x == enemy.x && player.y == enemy.y)
+                    enemy.Attack(player.attack);
+                if (enemy.hp > 0)
+                    newList1.Add(enemy);
+            }
+
+            listOfItems = newList;
+            listOfEnemies = newList1;
         }
 
         /// <summary>
@@ -119,6 +165,7 @@ namespace RPG
             {
                 Console.SetCursorPosition(0, 0);
                 ShowMap();
+                ProcessCollisions();
 
                 Console.SetCursorPosition(0, map.height);
                 Console.Write("1.Влево\n2.Вправо\n3.Вверх\n4.Вниз\n>\n");

@@ -21,6 +21,21 @@ namespace RPG
         public int y;
 
         /// <summary>
+        /// Здоровье игрока
+        /// </summary>
+        public int hp = 100;
+
+        /// <summary>
+        /// Уровень атаки игрока
+        /// </summary>
+        public int attack = 100;
+
+        /// <summary>
+        /// Уровень защиты игрока
+        /// </summary>
+        public int defense = 50;
+
+        /// <summary>
         /// Инвентарь игрока
         /// </summary>
         List<Item> inventory;

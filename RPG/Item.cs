@@ -32,7 +32,6 @@ namespace RPG
         public Item(string name)
         {
             this.name = name;
-
         }
 
         /// <summary>
