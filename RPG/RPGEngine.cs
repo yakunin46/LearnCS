@@ -7,47 +7,25 @@ namespace RPG
     /// <summary>
     /// Игровой движок
     /// </summary>
-    internal class RPGEngine
+    internal static class RPGEngine
     {
-        /// <summary>
-        /// Список предметов мира
-        /// </summary>
-        List<Item> listOfItems;
-
-        /// <summary>
-        /// Список врагов
-        /// </summary>
-        List<Enemy> listOfEnemies;
-
         /// <summary>
         /// Экземпляр карты
         /// </summary>
-        Map map;
+        public static Map map = new Map(2, 2);
 
         /// <summary>
         /// Экземпляр игрока
         /// </summary>
-        Player player;
-
-        /// <summary>
-        /// Создает игровой движок
-        /// </summary>
-        public RPGEngine()
-        {
-            map = new Map(2, 2);
-            player = new Player(1, 1);
-            listOfItems = new List<Item>();
-            listOfEnemies = new List<Enemy>();
-        }
+        public static Player player = new Player(1, 1);
 
         /// <summary>
         /// Меняет карту
         /// </summary>
         /// <param name="map"></param>
-        public void SetMap(Map map)
+        public static void SetMap(Map map)
         {
-            this.map = map;
-            listOfItems.Clear();
+            RPGEngine.map = map;
         }
 
         /// <summary>
@@ -55,35 +33,17 @@ namespace RPG
         /// </summary>
         /// <param name="x">Новое положение игрока по оси X</param>
         /// <param name="y">Новое положение игрока по оси Y</param>
-        public void SetPlayer(int x, int y)
+        public static void SetPlayer(int x, int y)
         {
             player.x = x;
             player.y = y;
         }
 
         /// <summary>
-        /// Устанавливает положение предмета на карте
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void AddItem(Item item, int x, int y)
-        {
-            item.x = x;
-            item.y = y;
-            listOfItems.Add(item);
-        }
-
-        public void AddEnemy(Enemy enemy)
-        {
-            listOfEnemies.Add(enemy);
-        }
-
-        /// <summary>
         /// Проверяет нажатую клавишу
         /// </summary>
         /// <param name="inputKey">Информация о нажатой клавише</param>
-        void CheckKey(ConsoleKeyInfo inputKey)
+        private static void CheckKey(ConsoleKeyInfo inputKey)
         {
             if (inputKey.KeyChar == '1' && player.x > 1)
                 SetPlayer(player.x - 1, player.y);
@@ -98,64 +58,28 @@ namespace RPG
                 SetPlayer(player.x, player.y + 1);
         }
 
-        /// <summary>
-        /// Отображает карту, игрока, врагов и предметы в консоли
-        /// </summary>
-        void ShowMap()
+        private static void ProcessCollisions()
         {
-            for (int i = 0; i < map.height; i++)
+            Item? item = map.GetItem(player.x, player.y);
+            if (item != null)
             {
-                for (int j = 0; j < map.width; j++)
-                        Console.Write(Atlas.Get(map.grid[i, j]) + " ");
-                Console.WriteLine();
+                player.AddItem(item);
+                map.listOfItems.Remove(item);
             }
 
-            foreach (Enemy enemy in listOfEnemies)
+            Enemy? enemy = map.GetEnemy(player.x, player.y);
+            if (enemy != null)
             {
-                Console.SetCursorPosition(2 * enemy.x, enemy.y);
-                Console.Write(Atlas.Get(Cell.ENEMY));
+                enemy.Attack(player.attack);
+                if (enemy.hp <= 0)
+                    map.listOfEnemies.Remove(enemy);
             }
-
-            foreach (Item item in listOfItems)
-            {
-                Console.SetCursorPosition(2 * item.x, item.y);
-                Console.Write(Atlas.Get(Cell.ITEM));
-            }
-
-            Console.SetCursorPosition(2 * player.x, player.y);
-            Console.Write(Atlas.Get(Cell.PLAYER));
-        }
-
-        /// <summary>
-        /// Обрабатывает столкновение игрока с другими объектами или врагами
-        /// </summary>
-        private void ProcessCollisions()
-        {
-            List<Item> newList = new List<Item>();
-            foreach (Item item in listOfItems)
-            {
-                if (player.x == item.x && player.y == item.y)
-                    player.AddItem(item);
-                else
-                    newList.Add(item);
-            }
-            List<Enemy> newList1 = new List<Enemy>();
-            foreach (Enemy enemy in listOfEnemies)
-            {
-                if (player.x == enemy.x && player.y == enemy.y)
-                    enemy.Attack(player.attack);
-                if (enemy.hp > 0)
-                    newList1.Add(enemy);
-            }
-
-            listOfItems = newList;
-            listOfEnemies = newList1;
         }
 
         /// <summary>
         /// Запускает игру
         /// </summary>
-        public void Run()
+        public static void Run()
         {
             ConsoleKeyInfo inputKey;
             Console.Clear();
@@ -164,7 +88,11 @@ namespace RPG
             while (true) 
             {
                 Console.SetCursorPosition(0, 0);
-                ShowMap();
+                map.Show();
+
+                Console.SetCursorPosition(2 * player.x, player.y);
+                Console.Write(Atlas.Get(Cell.PLAYER));
+
                 ProcessCollisions();
 
                 Console.SetCursorPosition(0, map.height);

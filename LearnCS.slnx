@@ -10,4 +10,5 @@
   <Project Path="Num1/Num1.csproj" />
   <Project Path="RPG/RPG.csproj" />
   <Project Path="static_metods_separation/StaticMethodsSeparation.csproj" Id="81e63933-2bb5-4c9d-b43e-b654c4fea6ff" />
+  <Project Path="static_metods_separation2/StaticMethodsSeparation2.csproj" Id="3c15afe2-a711-4e8c-8c5e-a5b288d64b19" />
 </Solution>

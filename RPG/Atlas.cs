@@ -8,7 +8,7 @@ namespace RPG
     /// <summary>
     /// Тип ячейки мира
     /// </summary>
-    enum Cell
+    public enum Cell
     {
         /// <summary>
         /// Пустая ячейка
@@ -39,12 +39,12 @@ namespace RPG
     /// <summary>
     /// Набор символов из которых состоит мир
     /// </summary>
-    internal class Atlas
+    public static class Atlas
     {
         /// <summary>
         /// Содержит строку символов в том же порядке что и Cell
         /// </summary>
-        static string strOfChars = "";
+        private static string strOfChars = "";
 
         /// <summary>
         /// Задает Атлас как последовательность символов

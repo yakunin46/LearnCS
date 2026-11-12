@@ -11,21 +11,22 @@ namespace RPG
         {
             Atlas.Set(" #$W?");
 
-            RPGEngine engine = new RPGEngine();
-            engine.SetMap(new Map(30, 20));
-            engine.SetPlayer(17, 3);
-            engine.AddItem(new Item("Бочка"), 2, 2);
-            engine.AddItem(new Item("Камень"), 5, 8);
-            engine.AddItem(new Item("Бревно"), 22, 12);
-            engine.AddItem(new Item("Меч"), 13, 17);
+            RPGEngine.SetMap(new Map(10, 20));
+            RPGEngine.SetPlayer(5, 5);
 
-            engine.AddEnemy(new Enemy(5, 5, 100));
-            engine.AddEnemy(new Enemy(12, 10, 100));
+            RPGEngine.SetMap(new Map(30, 20));
+            RPGEngine.SetPlayer(17, 3);
 
-            //engine.SetMap(new Map(10, 20));
-            //engine.SetPlayer(5, 5);
+            RPGEngine.map.AddItem(new Item("Бочка"), 2, 2);
+            RPGEngine.map.AddItem(new Item("Камень"), 5, 8);
+            RPGEngine.map.AddItem(new Item("Бревно"), 22, 12);
+            RPGEngine.map.AddItem(new Item("Меч"), 13, 17);
+            RPGEngine.map.AddItem(new Item("Часы"), 24, 5);
 
-            engine.Run();
+            RPGEngine.map.AddEnemy(new Enemy(5, 5, 100));
+            RPGEngine.map.AddEnemy(new Enemy(12, 10, 100));
+
+            RPGEngine.Run();
         }
     }
 }

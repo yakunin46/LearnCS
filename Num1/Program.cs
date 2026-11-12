@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
 using Console = Colorful.Console;
 
 namespace Num1
@@ -7,39 +8,6 @@ namespace Num1
     class Program
     {
         static void Method1()
-        {
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("Hello to c#!");
-
-            Console.WriteLine(true);
-            Console.WriteLine(false);
-
-            Console.WriteLine(0b11);        // 3
-            Console.WriteLine(0b1011);      // 11
-            Console.WriteLine(0b100001);    // 33
-
-            Console.WriteLine(0x0A);    // 10
-            Console.WriteLine(0xFF);    // 255
-            Console.WriteLine(0xA1);    // 161
-
-            Console.WriteLine('\x78');    // x
-            Console.WriteLine('\x5A');    // Z
-
-            Console.WriteLine('\u0420');    // Р
-            Console.WriteLine('\u0421');    // С
-
-            Console.WriteLine("Привет\nмир\n");
-
-            Console.Write("Введите свое имя: ");
-            string? name = Console.ReadLine();
-            Console.WriteLine($"Привет, {name}");
-
-            Console.Write("Введите возраст: ");
-            int age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"Возраст: {age}");
-        }
-
-        static void Method2()
         {
             int[] mas = [1, 2, 3, 4];
             for (int i = 0; i < mas.Length; i++)
@@ -76,10 +44,38 @@ namespace Num1
             }
         }
 
-        static void Main()
+        static void Method2()
         {
-            //Method1();
-            //Method2();
+            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello to c#!");
+
+            Console.WriteLine(true);
+            Console.WriteLine(false);
+
+            Console.WriteLine(0b11);        // 3
+            Console.WriteLine(0b1011);      // 11
+            Console.WriteLine(0b100001);    // 33
+
+            Console.WriteLine(0x0A);    // 10
+            Console.WriteLine(0xFF);    // 255
+            Console.WriteLine(0xA1);    // 161
+
+            Console.WriteLine('\x78');    // x
+            Console.WriteLine('\x5A');    // Z
+
+            Console.WriteLine('\u0420');    // Р
+            Console.WriteLine('\u0421');    // С
+
+            Console.WriteLine("Привет\nмир\n");
+
+            Console.Write("Введите свое имя: ");
+            string? name = Console.ReadLine();
+            Console.WriteLine($"Привет, {name}");
+
+            Console.Write("Введите возраст: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Возраст: {age}");
+
             int[][] numbers = new int[3][];
             numbers[0] = new int[] { 1, 2 };
             numbers[1] = new int[] { 1, 2, 3 };
@@ -87,11 +83,58 @@ namespace Num1
             foreach (int[] row in numbers)
             {
                 foreach (int number in row)
-                {
                     Console.Write($"{number} \t");
-                }
                 Console.WriteLine();
             }
+        }
+
+        static void Method3()
+        {
+            int max = 5 > 2 ? 5 : 2;
+            Console.WriteLine(max);
+
+            int[] mas = { -4, 21, 56, -9, 0, -23, 12, 9, -6 };
+
+            foreach (int i in mas)
+            {
+                Console.Write(i + "\t");
+            }
+
+            for (int i = 0; i < mas.Length / 2; i++)
+            {
+                int temp = mas[i];
+                mas[i] = mas[mas.Length - 1 - i];
+                mas[mas.Length - 1 - i] = temp;
+            }
+
+            Console.WriteLine();
+
+            foreach (int i in mas)
+            {
+                Console.Write(i + "\t");
+            }
+
+            for (int i = 0; i < mas.Length - 1; i++)
+                for (int j = i + 1; j < mas.Length; j++)
+                    if (mas[i] > mas[j])
+                    {
+                        int temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+                    }
+
+            Console.WriteLine();
+
+            foreach (int i in mas)
+            {
+                Console.Write(i + "\t");
+            }
+        }
+        static void Main()
+        {
+            //Method1();
+            //Method2();
+            Method3();
         }
     }
 }
