@@ -110,9 +110,7 @@ namespace Num1
             Console.WriteLine();
 
             foreach (int i in mas)
-            {
                 Console.Write(i + "\t");
-            }
 
             for (int i = 0; i < mas.Length - 1; i++)
                 for (int j = i + 1; j < mas.Length; j++)
