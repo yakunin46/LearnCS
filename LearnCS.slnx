@@ -5,7 +5,10 @@
   <Project Path="Lab4/Lab4.csproj" Id="490444d7-be10-40dc-a0b6-e6e3dd24d4f2" />
   <Project Path="Lab5/Lab5.csproj" Id="c8fe6745-5104-46be-8993-68a942ff763c" />
   <Project Path="Lab6/Lab6.csproj" Id="00acece0-95a4-4cab-97ef-ac73318a9dae" />
-  <Project Path="LabString/LabString.csproj" Id="bcb21ece-8d3c-46ad-b0d7-6489be73d4f3" />
+  <Project Path="Lab7_1/Lab7_1.csproj" />
+  <Project Path="Lab7_2/Lab7_2.csproj" Id="10582e58-27d1-492f-969d-37ce9d543df0" />
+  <Project Path="LabString1/LabString1.csproj" />
+  <Project Path="LabString2/LabString2.csproj" Id="f7686249-65e9-44d2-a701-c40fd44df888" />
   <Project Path="Lab_china/Lab_china/Lab_china.csproj" Id="eb97744b-9bc4-4794-9b79-61bf337a9aa2" />
   <Project Path="lab_stack/lab_stack.csproj" Id="87f9ff91-5758-4421-96a0-889b76798e06" />
   <Project Path="Num1/Num1.csproj" />

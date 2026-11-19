@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Reflection;
+using System.Text;
 using Console = Colorful.Console;
 
 namespace Num1
@@ -128,11 +129,54 @@ namespace Num1
                 Console.Write(i + "\t");
             }
         }
+
+        static void Method4()
+        {
+            BankAccount account1 = new BankAccount("Alex", 1200.6891M);
+            BankAccount account2 = new BankAccount("Alice", 35012);
+            BankAccount account3 = new BankAccount("Mark", 305.4M);
+
+            account1.GetInfo();
+            Console.WriteLine();
+
+            account2.GetInfo();
+            Console.WriteLine();
+
+            account3.GetInfo();
+            Console.WriteLine();
+
+            account1.Deposit(-500);
+            Console.WriteLine();
+
+            account1.Deposit(720);
+            Console.WriteLine();
+
+            account2.Withdraw(40000);
+            Console.WriteLine();
+
+            account2.Withdraw(10000);
+            Console.WriteLine();
+        }
         static void Main()
         {
+            Console.OutputEncoding = Encoding.UTF8;
+
             //Method1();
             //Method2();
-            Method3();
+            //Method3();
+            Method4();
+            List<Product> list = new List<Product>();
+            list.Add(new Product("Книга", "Книжная продукция", 300, 15));
+            list.Add(new Product("Ручка", "Канелярия", 35, 200));
+            list.Add(new Product("Карандаш", "Канелярия", 15, 400));
+            list.Add(new Product("Принтер", "Цифровая техника", 12000, 14));
+            list.Add(new Product("Линейка", "Канелярия", 45, 72));
+            list.Add(new Product("Футболка", "Одежда", 1200, 80));
+            list.Add(new Product("Ботинки", "Обувь", 3400, 35));
+            list.Add(new Product("Кофта", "Одежда", 2500, 50));
+            list.Add(new Product("Журнал", "Книжная продукция", 180, 40));
+            list.Add(new Product("Зеркало", "Декор", 15000, 8));
+            list.Add(new Product("Ваза", "Декор", 3500, 42));
         }
     }
 }
