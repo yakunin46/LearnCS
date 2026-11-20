@@ -52,7 +52,7 @@ namespace Lab7_2
         /// <summary>
         /// Разбивает строку на массив слов по пробелам и точке
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="str">исходная строка</param>
         /// <returns></returns>
         private static string[] SplitString(string str)
         {

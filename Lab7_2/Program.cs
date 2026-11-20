@@ -15,17 +15,16 @@ namespace Lab7_2
         }
 
         /// <summary>
-        /// Вычисляет сумму S
+        /// Вычисляет сумму S, используя рекурсию
         /// </summary>
         /// <param name="x">переменная x</param>
         /// <returns></returns>
-        private static double CalculateS(double x)
+        private static double CalculateS(double x, int n)
         {
-            double s = Math.Log(2);
-            for (int n = 1; n <= 40; n++)
-                s += Math.Cos(2 * n * x) / n;
-
-            return s;
+            if (n == 0)
+                return Math.Log(2);
+            else
+                return CalculateS(x, n - 1) + Math.Cos(2 * n * x) / n;
         }
 
         static void Main()
@@ -36,7 +35,7 @@ namespace Lab7_2
                 double y = CalculateY(x);
                 Console.WriteLine(y);
 
-                double s = CalculateS(x);
+                double s = CalculateS(x, 40);
                 Console.WriteLine(s);
 
                 Console.WriteLine();
