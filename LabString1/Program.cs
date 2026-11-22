@@ -31,13 +31,13 @@ namespace Lab7_2
             for (int i = 0; i < countOfWords; i++)
             {
                 int countOfLetters = r.Next(2, 8);
-                string strRandom = "";
+                string wordRandom = "";
                 for (int j = 0; j < countOfLetters; j++)
                 {
                     int index = r.Next(0, 26);
-                    strRandom += symbols[index];
+                    wordRandom += symbols[index];
                 }
-                str += strRandom;
+                str += wordRandom;
                 if (i != countOfWords - 1)
                 {
                     int countOfSpace = r.Next(1, 5);
@@ -74,6 +74,7 @@ namespace Lab7_2
 
             return str2;
         }
+
         static void Main()
         {
             char[] symbols = CreateCharMas();
